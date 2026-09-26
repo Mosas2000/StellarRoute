@@ -45,6 +45,8 @@ use crate::models::{
         crate::routes::v2_cctp::cctp_prepare_mint,
         crate::routes::v2_cctp::cctp_submit_mint,
         crate::routes::v2_cctp::cctp_reattest,
+        crate::routes::agent::agent_health,
+        crate::routes::agent::agent_intents_validate,
     ),
     components(schemas(
         HealthResponse,
@@ -115,6 +117,7 @@ use crate::models::{
         crate::models::v2_cctp::CctpSubmitMintRequest,
         crate::models::v2_cctp::CctpSubmitMintResponse,
         crate::models::v2_cctp::CctpReattestResponse,
+        crate::routes::agent::AgentHealthResponse,
     )),
     tags(
         (name = "health", description = "Health check endpoints"),
@@ -126,6 +129,7 @@ use crate::models::{
         (name = "swap", description = "Live swap path: prepare an unsigned transaction from a route, then submit a signed transaction on-chain"),
         (name = "v2", description = "API v2 seam: chain-aware asset canonicalize/info only (no v2 quotes). Bridges are metadata-only/non-executable; provider controls apply only to provider-tagged candidates."),
         (name = "cctp", description = "Circle CCTP v2 bridge contract (fail-closed until backend execution is enabled). Burn/mint prepare returns wallet payloads; submit endpoints accept tx hash acknowledgement only."),
+        (name = "agent", description = "AI agent feature endpoints (fail-closed; return 404 when AI_AGENT_ENABLED is unset). No trade amounts or wallet addresses are stored."),
     ),
     info(
         title = "StellarRoute API",
